@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-    private static Logger log = LoggerFactory.getLogger(HomeController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
     @GetMapping("/")
     public String root() {
-        log.info("Hello 1234");
+        LOGGER.info("Hello 1234");
         return "index";
     }
 
-    //    @GetMapping("/user")
-//    public String userIndex() {
-//        return "user/index";
-//    }
-//
+    @GetMapping("/user")
+    public String userIndex() {
+        return "user/index";
+    }
+
     @GetMapping("/login")
     public String login() {
         return "/auth/login";

@@ -1,23 +1,33 @@
 server:
-  port: 6734
-
+    port: 6734
 spring:
-  thymeleaf:
-    cache: false
-    check-template: true
-    check-template-location: true
-    enabled: true
-    encoding: UTF-8
-    mode: HTML
-    prefix: classpath:/templates/
-    suffix: .html
-    # excluded-view-names:
-    # template-resolver-order:
-    # view-names:
-
-#logging:
-#  level:
-#    root: WARN
-#    com.memorynotfound: DEBUG
-#    org.springframework.web: INFO
-#    org.springframework.security: INFO
+    thymeleaf:
+        cache: false
+        check-template: true
+        check-template-location: true
+        enabled: true
+        encoding: UTF-8
+        mode: HTML
+        prefix: 'classpath:/templates/'
+        suffix: .html
+    datasource:
+        dataSourceClassName: org.h2.jdbcx.JdbcDataSource
+        url: jdbc:h2:mem:elk-todo;DB_CLOSE_DELAY=-1
+        username: sa
+        password: null
+        name: elk-todo
+    h2:
+      console:
+        enabled: true
+    jpa:
+      database-platform: org.hibernate.dialect.H2Dialect
+      database: H2
+      openInView: false
+      show_sql: true
+      generate-ddl: true
+      hibernate:
+        ddl-auto: create-drop
+        naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+      properties:
+        hibernate.cache.use_query_cache: false
+        hibernate.generate_statistics: true

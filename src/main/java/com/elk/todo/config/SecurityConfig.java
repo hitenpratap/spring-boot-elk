@@ -24,6 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/css/**",
                         "/img/**").permitAll()
                 .antMatchers("/user/**").hasRole("USER")
+                .antMatchers("/h2-console/*").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -39,6 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler);
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
     }
 
     @Override
