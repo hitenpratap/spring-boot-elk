@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:300" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sticky-footer-navbar.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">ELK | TODO App</title>
+</head>
+<body>
+<th:block th:replace="fragments/header :: header"/>
+<br/><br/><br/><br/>
+<div class="container">
+    <th:block layout:fragment="content"/>
+</div>
+<th:block th:replace="fragments/footer :: footer"/>
+</body>
+</html>
