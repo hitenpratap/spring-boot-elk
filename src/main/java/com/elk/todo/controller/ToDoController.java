@@ -10,7 +10,11 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.transaction.Transactional;
+import java.security.Principal;
 
 @Controller
 public class ToDoController {
@@ -27,8 +31,10 @@ public class ToDoController {
     }
 
     @PostMapping(value = "/todo/save", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String save(ToDoCO toDoCO) {
+    public String save(ToDoCO toDoCO, Principal principal) {
+        LOGGER.info("****************     Current LoggedIn  USER        ===>>>      {}", principal.getName());
         ToDo toDo = new ToDo(toDoCO);
+        toDo.setCreatedBy(principal.getName());
         toDoRepository.save(toDo);
         LOGGER.info("Created new Todo named => {}", toDoCO.getName());
         return "redirect:/todo/list";
@@ -39,6 +45,14 @@ public class ToDoController {
         LOGGER.info("Fetching List of All Todo");
         model.addAttribute("todoList", toDoRepository.findAll());
         return "/todo/list";
+    }
+
+    @Transactional
+    @GetMapping(value = "/todo/delete/{todoId}")
+    public String delete(@PathVariable("todoId") String todoId) {
+        LOGGER.info("Deleting ToDo with UniqueId    =>  {}", todoId);
+        toDoRepository.deleteByUniqueId(todoId);
+        return "redirect:/todo/list";
     }
 
 }

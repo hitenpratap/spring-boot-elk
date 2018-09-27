@@ -24,12 +24,14 @@
                         </div>
                     </h2>
                     <div class="alert alert-danger text-center" th:if="${todoList.empty}">No data found!</div>
-                    <table class="table table-condensed table-hover table-responsive" style="display: table!important;">
+                    <table class="table table-condensed table-hover table-responsive" style="display: table!important;"
+                           th:if="${!todoList.empty}">
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Dated</th>
                             <th scope="col">Name</th>
+                            <th scope="col">Created By</th>
                             <th scope="col"></th>
                         </tr>
                         </thead>
@@ -40,7 +42,8 @@
                                     th:text="${#dates.format(todo.getDateCreated(), 'dd-MMM-yyyy hh:mm:ss a')}"></span>
                             </td>
                             <td scope="row"><span th:text="${todo.getName()}"></span></td>
-                            <td><a href="javascript:void(0)">Edit</a></td>
+                            <td scope="row"><span th:text="${todo.getCreatedBy()}"></span></td>
+                            <td><a th:href="@{'/todo/delete/' + ${todo.getUniqueId()}}">Delete</a></td>
                         </tr>
                         </tbody>
                     </table>
