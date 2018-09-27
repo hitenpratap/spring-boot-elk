@@ -1,5 +1,6 @@
 package com.elk.todo.domain;
 
+import com.elk.todo.commandObject.ToDoCO;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -28,6 +29,14 @@ public class ToDo {
     private Date lastUpdated;
     @Column
     private String uniqueId = UUID.randomUUID().toString();
+
+    public ToDo() {
+    }
+
+    public ToDo(ToDoCO toDoCO) {
+        this.setName(toDoCO.getName());
+        this.setDescription(toDoCO.getDescription());
+    }
 
     public Long getId() {
         return id;

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>ToDo List</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+    <div class="row">
+        <div class="col-lg">
+        </div>
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">
+                        <div class="row">
+                            <div class="col-lg">
+                                <span>ToDo List</span>
+                            </div>
+                            <div>
+                                <a th:href="@{/todo/create}" class="btn btn-light btn-sm">Create ToDo</a>
+                            </div>
+                        </div>
+                    </h2>
+                    <div class="alert alert-danger text-center" th:if="${todoList.empty}">No data found!</div>
+                    <table class="table table-condensed table-hover table-responsive" style="display: table!important;">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Dated</th>
+                            <th scope="col">Name</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="todo,iter:${todoList}">
+                            <th scope="row"><span th:text="${iter.index + 1}"></span></th>
+                            <td><span
+                                    th:text="${#dates.format(todo.getDateCreated(), 'dd-MMM-yyyy hh:mm:ss a')}"></span>
+                            </td>
+                            <td scope="row"><span th:text="${todo.getName()}"></span></td>
+                            <td><a href="javascript:void(0)">Edit</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg">
+        </div>
+    </div>
+</div>
+</body>
+</html>

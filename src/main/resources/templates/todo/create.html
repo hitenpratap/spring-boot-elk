@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Create ToDo</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+    <div class="row">
+        <div class="col-lg">
+        </div>
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Create ToDo</h2>
+
+                    <form th:action="@{/todo/save}" method="post" autocomplete="off">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name"
+                                   placeholder="Name" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea name="description" class="form-control" id="description" rows="8"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary card-link">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg">
+        </div>
+    </div>
+</div>
+</body>
+</html>
