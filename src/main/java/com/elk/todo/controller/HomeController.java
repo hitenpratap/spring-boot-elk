@@ -12,13 +12,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String root() {
-        LOGGER.info("Hello 1234");
         return "index";
-    }
-
-    @GetMapping("/user")
-    public String userIndex() {
-        return "user/index";
     }
 
     @GetMapping("/login")

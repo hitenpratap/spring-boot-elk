@@ -1,6 +1,9 @@
 server:
     port: 6734
 spring:
+    output:
+      ansi:
+        enabled: ALWAYS
     thymeleaf:
         cache: false
         check-template: true
@@ -31,3 +34,9 @@ spring:
       properties:
         hibernate.cache.use_query_cache: false
         hibernate.generate_statistics: true
+
+logging:
+  file: logs/application.log
+  pattern:
+    console: "%d %highlight(%-5level) %cyan(%logger{15}) - %msg %n"
+    file: "%d{yyyy-MMM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{15}) - %msg %n"
