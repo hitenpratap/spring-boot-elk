@@ -37,6 +37,3 @@ spring:
 
 logging:
   file: logs/application.log
-  pattern:
-    console: "%d %highlight(%-5level) %cyan(%logger{15}) - %msg %n"
-    file: "%d{yyyy-MMM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{15}) - %msg %n"
